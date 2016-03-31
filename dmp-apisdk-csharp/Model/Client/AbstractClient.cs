@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using log4net;
 using log4net.Config;
 using System.IO;
+using dmpapisdkcsharp.Clients.Exceptions;
+
 
 namespace dmpapisdkcsharp.Clients
 {

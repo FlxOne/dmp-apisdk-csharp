@@ -1,4 +1,5 @@
 ﻿using System;
+using dmpapisdkcsharp.Clients.Exceptions;
 using Newtonsoft.Json.Linq;
 
 namespace dmpapisdkcsharp.Responses

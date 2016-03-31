@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace dmpapisdkcsharp
+namespace dmpapisdkcsharp.Clients.Exceptions
 {
 	public class ClientException : Exception
 	{
