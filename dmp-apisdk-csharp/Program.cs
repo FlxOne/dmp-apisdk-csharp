@@ -21,7 +21,7 @@ namespace dmpapisdkcsharp
 
 			#region Example 1: Get the current user's information
 			string service = "user/current";
-			Request request = new Request(service);
+			IRequest request = new Request(service);
 			try {
 				IResponse response = client.get(request);
 				Console.WriteLine(response.Get("user")["first_name"] + " " + response.Get("user")["last_name"]);

@@ -19,7 +19,7 @@ namespace dmpapisdkcsharp.Responses
 					return ResponseStatus.OK;
 				}
 			} catch (Exception e) {
-				//throw new ClientException (e);
+				throw new ClientException (e);
 			}
 			return ResponseStatus.ERROR;
 		}
@@ -42,6 +42,11 @@ namespace dmpapisdkcsharp.Responses
 				return this.Get("csrf").Value<string>();
 			}
 			return "";
+		}
+
+		public override string ToString ()
+		{
+			return string.Format ("[AbstractResponse: JsonOuterResponseObject={0}]", JsonOuterResponseObject.ToString());
 		}
 	}
 }

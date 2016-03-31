@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>dmp-apisdk-csharp</id>
+    <version>1.0.0</version>
+    <title>DMP API SDK for CSHARP</title>
+    <authors>Pim Verlangen</authors>
+    <owners>Teradata</owners>
+    <projectUrl>https://github.com/FlxOne/dmp-apisdk-csharp</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An SDK for the Teradata DMP for .NET Developers</description>
+    <releaseNotes>The first version of the SDK for the Teradata DMP API</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>teradata dmp sdk</tags>
+    <dependencies>        
+        <dependency id="log4net" version="1.2.10"/>
+        <dependency id="Newtonsoft.Json" version="8.0.3"/>
+        <dependency id="this.Log" version="0.0.3.0"/>
+        <dependency id="this.Log-log4net" version="0.0.3.0"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin/Release/dmp-apisdk-csharp.dll" target="lib"/>
+  </files>
+</package>
