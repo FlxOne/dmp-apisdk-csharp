@@ -26,7 +26,7 @@ namespace dmpapisdkcsharp
 				IResponse response = client.get(request);
 				Console.WriteLine(response.Get("user")["first_name"] + " " + response.Get("user")["last_name"]);
 			} catch (Exception ex) {
-				Console.WriteLine ("Request failed: " + ex.Message);
+				Console.WriteLine("Request failed: " + ex.Message);
 			}
 			#endregion
 
@@ -41,7 +41,7 @@ namespace dmpapisdkcsharp
 				pixelId = (int)response.Get("beacon")["id"];
 				Console.WriteLine(string.Format("Created a new pixel with id [{0}] and name: [{1}]", pixelId, response.Get("beacon")["name"]));
 			} catch (Exception ex) {
-				Console.WriteLine ("Request failed: " + ex.Message);
+				Console.WriteLine("Request failed: " + ex.Message);
 			}
 			#endregion
 
@@ -54,7 +54,7 @@ namespace dmpapisdkcsharp
 				IResponse response = client.put(request);
 				Console.WriteLine(string.Format("Changed the name of the pixel with id [{0}] and name: [{1}]", pixelId, response.Get("beacon")["name"]));
 			} catch (Exception ex) {
-				Console.WriteLine ("Request failed: " + ex.Message);
+				Console.WriteLine("Request failed: " + ex.Message);
 			}
 			#endregion
 
@@ -66,7 +66,7 @@ namespace dmpapisdkcsharp
 				IResponse response = client.delete(request);
 				Console.WriteLine(string.Format("Did we delete the previously created Pixel? --> [{0}]", (bool)response.Get("deleted")));
 			} catch (Exception ex) {
-				Console.WriteLine ("Request failed: " + ex.Message);
+				Console.WriteLine("Request failed: " + ex.Message);
 			}
 			#endregion
 		}
