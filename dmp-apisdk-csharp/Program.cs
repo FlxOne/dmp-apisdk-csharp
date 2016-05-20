@@ -31,8 +31,8 @@ namespace dmpapisdkcsharp
 			#endregion
 
 			#region Example 2: Create a Data Collection Pixel using a POST request
-			 service = "tracking/beacon";
-			 request = new Request(service);
+			service = "tracking/beacon";
+			request = new Request(service);
 			request.Parameters.Add("name", "C# SDK-Created Pixel");
 			request.Parameters.Add("type", "smart_pixel");
 			int pixelId = -1; // Store the pixelId for further usage in the PUT/DELETE examples
@@ -46,8 +46,8 @@ namespace dmpapisdkcsharp
 			#endregion
 
 			#region Example 3: Change the name of our previously created Pixel using a PUT request
-			 service = "tracking/beacon";
-			 request = new Request(service);
+			service = "tracking/beacon";
+			request = new Request(service);
 			request.Parameters.Add("id", pixelId.ToString());
 			request.Parameters.Add("name", "C# SDK-Created Pixel has had it's name changed");
 			try {
@@ -59,8 +59,8 @@ namespace dmpapisdkcsharp
 			#endregion
 
 			#region Example 4: Delete our previously created Pixel using a DELETE request
-			 service = "tracking/beacon";
-			 request = new Request(service);
+			service = "tracking/beacon";
+			request = new Request(service);
 			request.Parameters.Add("id", pixelId.ToString());
 			try {
 				IResponse response = client.delete(request);
