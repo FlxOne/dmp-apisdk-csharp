@@ -14,7 +14,7 @@ namespace dmpapisdkcsharp
 			#region Setup SDK
 			IConfig config = Config.GetDefault();
 
-			config.SetCredentials("my_username", "my_password");
+			config.SetCredentials("your username", "your password");
 
 			Client client = new Client(config);
 			#endregion

@@ -52,57 +52,70 @@ namespace dmpapisdkcsharp.Clients
 			return true;
 		}
 
-		protected IResponse Execute(HttpRequestMessage req) {
-			this.Log ().Info (string.Format ("Executing {0} request to {1}", req.Method, req.RequestUri));
+        protected IResponse Execute(HttpRequestMessage req)
+        {
+            this.Log().Info(string.Format("Executing {0} request to {1}", req.Method, req.RequestUri));
 
-			if (!req.RequestUri.ToString ().ToLower ().Contains ("auth")) {
-				if (this.authToken == "" || this.csrfToken == "") {
-					if (!this.Authenticate ()) {
-						throw new ClientException (new Exception ("Failed to authenticate"));
-					}
-				}
-			}
+            if (!req.RequestUri.ToString().ToLower().Contains("auth"))
+            {
+                if (this.authToken == "" || this.csrfToken == "")
+                {
+                    if (!this.Authenticate())
+                    {
+                        throw new ClientException(new Exception("Failed to authenticate"));
+                    }
+                }
+            }
 
-			req.Headers.Add ("X-Auth", this.authToken);
-			req.Headers.Add ("X-CSRF", this.csrfToken);
+            req.Headers.Add("X-Auth", this.authToken);
+            req.Headers.Add("X-CSRF", this.csrfToken);
 
-			HttpResponseMessage resp;
-			Response response = null;
-			for (int i = 0; i < this.config.MaxRetries; i++) {
-				try {
-					// Clone the original HttpRequestMessage for retry purposes
-					HttpRequestMessage reqClone = CloneHttpRequestMessageAsync(req);
-					resp = this.client.SendAsync(reqClone).Result;
+            HttpResponseMessage resp;
+            Response response = null;
+            for (int i = 0; i < this.config.MaxRetries; i++)
+            {
+                try
+                {
+                    // Clone the original HttpRequestMessage for retry purposes
+                    resp = this.client.SendAsync(req).Result;
 
-					// Log the response
-					string responseBody = resp.Content.ReadAsStringAsync().Result;
-					this.Log().Info("{0}", responseBody);
+                    // Log the response
+                    string responseBody = resp.Content.ReadAsStringAsync().Result;
+                    this.Log().Info("{0}", responseBody);
 
-					int status = (int)resp.StatusCode;
-					if (status == 401) {
-						this.Authenticate();
-						continue;
-					}
+                    int status = (int)resp.StatusCode;
+                    Console.WriteLine("Status: " + status);
+                    if (status == 401)
+                    {
+                        this.Authenticate();
+                        continue;
+                    }
 
-					response = new Response(responseBody);
-					if (response.GetStatus() == ResponseStatus.OK) {
-						// Stop retrying
-						break;
-					}
-				} catch (Exception ex) {
-					this.Log().Error(ex.Message);
-					try {
-						Thread.Sleep((1000 * i * i) + random.Next(1,101));
-					} catch (ThreadInterruptedException ex2) {
-						this.Log().Error(ex2.Message);
-					}
-				}
-			}
-			return response;
-		}
+                    response = new Response(responseBody);
+                    if (response.GetStatus() == ResponseStatus.OK)
+                    {
+                        // Stop retrying
+                        break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                   this.Log().Error(ex.Message);
+                    try
+                    {
+                        Thread.Sleep((1000 * i * i) + random.Next(1, 101));
+                    }
+                    catch (ThreadInterruptedException ex2)
+                    {
+                        this.Log().Error(ex2.Message);
+                    }
+                }
+            }
+            return response;
+        }
 
 
-		public IResponse get (IRequest request)
+        public IResponse get (IRequest request)
 		{
 			try {
 				HttpRequestMessage req = new HttpRequestMessage();
